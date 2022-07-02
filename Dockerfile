@@ -1,4 +1,4 @@
-FROM alpine:3.16.0 as builder
+FROM alpine:3.16 as builder
 
 ENV APP_HOME="/i2p"
 
@@ -8,14 +8,14 @@ RUN apk add --update --no-cache \
         git \
         openjdk11 \
  && cd /tmp \
- && git clone --depth 1 --branch i2p-1.7.0 \
+ && git clone --depth 1 --branch i2p-1.8.0 \
               https://github.com/i2p/i2p.i2p.git \
  && cd i2p.i2p \
  && ant preppkg-linux-only \
  && rm -rf pkg-temp/osid pkg-temp/lib/wrapper pkg-temp/lib/wrapper.*
 
 
-FROM padhihomelab/alpine-base:3.15.0_0.19.0_0.2
+FROM padhihomelab/alpine-base:3.16.0_0.19.0_0.2
 
 ENV APP_HOME="/i2p"
 
